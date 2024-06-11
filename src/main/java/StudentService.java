@@ -14,10 +14,11 @@ public class StudentService {
         return repo.getAllStudents();
     }
 
-    public Student getStudentById(String studentId) throws Exception {
-        Student result = null;
-        if (repo.findStudentById(studentId).isPresent()) result = repo.findStudentById(studentId).get();
-        else throw new IDNotNullException("Student with id " + studentId + " not found");
-        return result;
+    public Student getStudentById(String studentId) throws IDNotNullException {
+//        Student result = null;
+//        if (repo.findStudentById(studentId).isPresent()) result = repo.findStudentById(studentId).get();
+//        else throw new IDNotNullException("Student with id " + studentId + " not found");
+//        return result;
+        return repo.findStudentById(studentId).orElseThrow(() -> new IDNotNullException("Student with id " + studentId + " not found"));
     }
 }
