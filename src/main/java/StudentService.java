@@ -10,7 +10,14 @@ public class StudentService {
         return repo.save(studentToSave);
     }
 
-    public List<Student> getAllStudents(){
+    public List<Student> getAllStudents() {
         return repo.getAllStudents();
+    }
+
+    public Student getStudentById(String studentId) throws Exception {
+        Student result = null;
+        if (repo.findStudentById(studentId).isPresent()) result = repo.findStudentById(studentId).get();
+        else throw new IDNotNullException("Student with id " + studentId + " not found");
+        return result;
     }
 }
